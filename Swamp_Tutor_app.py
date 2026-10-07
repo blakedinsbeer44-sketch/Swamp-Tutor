@@ -7,7 +7,8 @@ st.set_page_config(page_title="Swamp Tutor", page_icon="🐊")
 st.title("🐊 Swamp Tutor")
 st.caption("Step-by-step help for UF & SF students. No direct answers, just pure learning.")
 
-client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+if "client" not in st.session_state:
+    st.session_state.client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 tutor_config = types.GenerateContentConfig(
     system_instruction=(
@@ -19,7 +20,7 @@ tutor_config = types.GenerateContentConfig(
 )
 
 if "chat_session" not in st.session_state:
-    st.session_state.chat_session = client.chats.create(
+    st.session_state.chat_session = st.session_state.client.chats.create(
         model="gemini-2.5-flash",
         config=tutor_config
     )
