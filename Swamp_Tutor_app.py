@@ -7,7 +7,7 @@ st.set_page_config(page_title="Swamp Tutor", page_icon="🐊")
 st.title("🐊 Swamp Tutor")
 st.caption("Step-by-step help for UF & SF students. No direct answers, just pure learning.")
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 tutor_config = types.GenerateContentConfig(
     system_instruction=(
