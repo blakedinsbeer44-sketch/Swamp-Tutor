@@ -46,7 +46,7 @@ if prompt := st.chat_input("E.g., I don't understand MAC2311 derivatives..."):
     # 4. Generate the response cleanly without relying on a stateful session
     with st.chat_message("assistant"):
         response = client.models.generate_content(
-            model="gemini-1.5-flash-8b",
+            model="gemini-pro-latest",
             contents=api_contents,
             config=tutor_config
         )
